@@ -1,8 +1,10 @@
 // variables
 const deckNameElement = document.getElementById('deck-name');
-const flashcardElement = document.getElementById('flash-card');
-const cardTextElement = document.getElementById('card-text');
-const answerElement = document.getElementById('answer');
+const cardElement = document.getElementById('card');
+const frontCardElement = document.getElementById('front-card');
+const frontCardTextElement = document.getElementById('front-card-text');
+const backCardElement = document.getElementById('back-card');
+const backCardTextElement = document.getElementById('back-card-text');
 const prevButtonElement = document.getElementById('prev-button');
 const nextButtonElement = document.getElementById('next-button');
 const cards = deck.cards;
@@ -24,7 +26,7 @@ nextButtonElement.addEventListener('click', () => {
     updateCard();
 });
 
-flashcardElement.addEventListener('click', () => {
+cardElement.addEventListener('click', () => {
     if (showingAnswer) {
         hideAnswer();
     } else {
@@ -34,20 +36,22 @@ flashcardElement.addEventListener('click', () => {
 
 // functions
 function updateCard() {
-    answerElement.style.visibility = 'hidden';
+    backCardTextElement.style.visibility = 'hidden';
     hideAnswer();
     index = (index + cards.length) % cards.length;
-    cardTextElement.innerHTML = cards[index].front;
-    answerElement.innerHTML = cards[index].back;
+    frontCardTextElement.innerHTML = cards[index].front;
+    backCardTextElement.innerHTML = cards[index].back;
 }
 
 function showAnswer() {
-    answerElement.style.visibility = 'visible';
-    answerElement.style.transform = 'translateY(0)';
+    backCardTextElement.style.visibility = 'visible';
+    frontCardElement.style.transform = 'translateX(-20%)';
+    backCardElement.style.transform = 'translateX(40%)';
     showingAnswer = true;
 }
 
 function hideAnswer() {
-    answerElement.style.transform = 'translateY(100%)';
+    frontCardElement.style.transform = 'translateX(0)';
+    backCardElement.style.transform = 'translateX(0)';
     showingAnswer = false;
 }
