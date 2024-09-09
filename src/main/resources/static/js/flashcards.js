@@ -45,13 +45,11 @@ function updateCard() {
 
 function showAnswer() {
     backCardTextElement.style.visibility = 'visible';
-    frontCardElement.style.transform = 'translateX(-20%)';
-    backCardElement.style.transform = 'translateX(40%)';
+    backCardElement.style.transform = 'translateY(60%)';
     showingAnswer = true;
 }
 
 function hideAnswer() {
-    frontCardElement.style.transform = 'translateX(0)';
-    backCardElement.style.transform = 'translateX(0)';
+    backCardElement.style.transform = 'translateY(0)';
     showingAnswer = false;
 }
