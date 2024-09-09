@@ -14,6 +14,6 @@ public class Card {
     private Long id;
     private String front;
     private String back;
-
+    private int occurrences;
 
 }

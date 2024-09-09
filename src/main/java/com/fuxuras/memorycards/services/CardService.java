@@ -29,6 +29,16 @@ public class CardService {
         }
         existingCard.setFront(card.getFront());
         existingCard.setBack(card.getBack());
+        existingCard.setOccurrences(card.getOccurrences());
         return cardRepository.save(existingCard);
+    }
+
+    public void updateOccurrences(long id, int occurrences) {
+        Card card = cardRepository.findById(id).orElse(null);
+        if (card == null) {
+            return;
+        }
+        card.setOccurrences(occurrences);
+        cardRepository.save(card);
     }
 }
