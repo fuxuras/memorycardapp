@@ -7,7 +7,6 @@ const backCardElement = document.getElementById('back-card');
 const backCardTextElement = document.getElementById('back-card-text');
 const prevButtonElement = document.getElementById('prev-button');
 const nextButtonElement = document.getElementById('next-button');
-const occurrences = document.getElementById('occurrences');
 const cards = deck.cards;
 
 // initialize
@@ -42,9 +41,6 @@ function updateCard() {
     index = (index + cards.length) % cards.length;
     frontCardTextElement.innerHTML = cards[index].front;
     backCardTextElement.innerHTML = cards[index].back;
-    cards[index].occurrences++;
-    occurrences.innerHTML = cards[index].occurrences;
-    updateOccurences(cards[index].id, cards[index].occurrences);
 }
 
 function showAnswer() {
@@ -56,14 +52,4 @@ function showAnswer() {
 function hideAnswer() {
     backCardElement.style.transform = 'translateY(0)';
     showingAnswer = false;
-}
-
-function updateOccurences(cardId, occurrences) {
-    fetch(`/api/cards?id=${cardId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(occurrences) // Send occurrences in the request body
-    });
 }
