@@ -20,6 +20,8 @@ public class Member {
 
     private String username;
 
+    private String password;
+
     @OneToMany
     private List<Deck> decks;
 

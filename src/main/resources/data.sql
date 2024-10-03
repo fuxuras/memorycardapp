@@ -42,3 +42,5 @@ INSERT INTO Deck_Cards (deck_id, cards_id) VALUES
                                    (1, 18),
                                    (1, 19),
                                    (1, 20);
+
+INSERT INTO member (id,username,password) VALUES (1,'furkan','{noop}123456789')
