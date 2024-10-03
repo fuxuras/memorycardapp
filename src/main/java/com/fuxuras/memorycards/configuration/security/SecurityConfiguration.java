@@ -15,9 +15,11 @@ public class SecurityConfiguration {
                 .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/favicon.ico").permitAll()
                 .anyRequest().authenticated())
-                .formLogin((form) -> form.loginPage("/login").permitAll()
+                .formLogin((form) -> form.loginPage("/login")
+                        .defaultSuccessUrl("/", true)
+                        .loginProcessingUrl("/login")
                         .failureUrl("/login?error")
-                        .defaultSuccessUrl("/"))
+                        .permitAll())
                 .logout(LogoutConfigurer::permitAll);
         //http.csrf(AbstractHttpConfigurer::disable);
         //http.headers((headers) ->
