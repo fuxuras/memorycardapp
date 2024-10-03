@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Flashcards</title>
-    <link rel="stylesheet" th:href="@{/css/flashcards.css}">
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
-<body class="bg-indigo-100">
+<body>
 
 <div class="text-center ">
-    <h1 id="deck-name" class="text-3xl m-3 text-indigo-800 font-bold mb-6"></h1>
+    <h2 class="text-3xl m-3 text-indigo-800 font-bold mb-6" >Decks</h2>
+    <div id="decks">
+
+    </div>
+    <h2 id="deck-name" class="text-3xl m-3 text-indigo-800 font-bold mb-6"></h2>
 
     <div class="flex justify-center items-center">
 
@@ -30,7 +33,7 @@
 
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var deck = /*[[${deck}]]*/ 'default';
+    var decks = /*[[${decks}]]*/ 'default';
     /*]]>*/
 </script>
 <script th:src="@{/js/flashcards.js}"></script>

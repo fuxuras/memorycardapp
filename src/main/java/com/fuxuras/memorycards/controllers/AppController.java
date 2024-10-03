@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/")
@@ -17,9 +20,9 @@ public class AppController {
 
 
     @GetMapping
-    public String app(Model model) {
-        Deck deck = deckService.getDeckById(1L);
-        model.addAttribute("deck", deck);
+    public String app(Model model, Principal principal) {
+        List<Deck> decks = deckService.getDecksByUsername(principal.getName());
+        model.addAttribute("decks", decks);
         return "flashcards";
     }
 }

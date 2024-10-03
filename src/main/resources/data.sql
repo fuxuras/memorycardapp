@@ -43,4 +43,39 @@ INSERT INTO Deck_Cards (deck_id, cards_id) VALUES
                                    (1, 19),
                                    (1, 20);
 
-INSERT INTO member (id,username,password) VALUES (1,'furkan','{noop}123456789')
+INSERT INTO member (id,username,password) VALUES (1,'furkan','{noop}123456789');
+INSERT INTO MEMBER_DECKS (decks_id,member_id) VALUES (1,1);
+
+
+INSERT INTO Card (front, back) VALUES
+                                   ('Bonjour', 'Hello'),
+                                   ('Merci', 'Thank you'),
+                                   ('Au revoir', 'Goodbye'),
+                                   ('S''il vous plaît', 'Please'),
+                                   ('Oui', 'Yes'),
+                                   ('Non', 'No'),
+                                   ('Excusez-moi', 'Excuse me'),
+                                   ('Comment allez-vous?', 'How are you?'),
+                                   ('Enchanté', 'Nice to meet you'),
+                                   ('Pardon', 'Sorry'),
+                                   ('Bonne nuit', 'Good night'),
+                                   ('À bientôt', 'See you soon'),
+                                   ('Je ne sais pas', 'I don''t know'),
+                                   ('Bien sûr', 'Of course'),
+                                   ('S''il vous plaît', 'Please'),
+                                   ('De rien', 'You''re welcome'),
+                                   ('À plus tard', 'See you later'),
+                                   ('Bon appétit', 'Enjoy your meal'),
+                                   ('Au revoir', 'Goodbye'),
+                                   ('Bonne journée', 'Have a good day');
+
+-- Create French deck
+INSERT INTO Deck (name) VALUES ('French-English');
+
+-- Get the new deck ID (assuming it's 2 since there's only one existing deck)
+-- Associate cards with the French deck
+INSERT INTO Deck_Cards (deck_id, cards_id)
+SELECT 2, id FROM Card WHERE id > 20 ORDER BY id ASC LIMIT 20;
+
+-- Associate the new deck with user 1
+INSERT INTO MEMBER_DECKS (decks_id, member_id) VALUES (2, 1);
