@@ -43,8 +43,8 @@ INSERT INTO Deck_Cards (deck_id, cards_id) VALUES
                                    (1, 19),
                                    (1, 20);
 
-INSERT INTO member (id,username,password) VALUES (1,'furkan','{noop}123456789');
-INSERT INTO MEMBER_DECKS (decks_id,member_id) VALUES (1,1);
+INSERT INTO member (id,username,password) VALUES (133,'furkan','{noop}123456789');
+INSERT INTO MEMBER_DECKS (decks_id,member_id) VALUES (1,133);
 
 
 INSERT INTO Card (front, back) VALUES
@@ -78,4 +78,4 @@ INSERT INTO Deck_Cards (deck_id, cards_id)
 SELECT 2, id FROM Card WHERE id > 20 ORDER BY id ASC LIMIT 20;
 
 -- Associate the new deck with user 1
-INSERT INTO MEMBER_DECKS (decks_id, member_id) VALUES (2, 1);
+INSERT INTO MEMBER_DECKS (decks_id, member_id) VALUES (2, 133);
