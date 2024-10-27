@@ -1,5 +1,6 @@
 package com.fuxuras.memorycards.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +23,8 @@ public class Member {
 
     private String password;
 
-    @OneToMany
+    @OneToMany(mappedBy = "owner")
+    @JsonManagedReference
     private List<Deck> decks;
 
 }

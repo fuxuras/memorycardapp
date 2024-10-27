@@ -1,5 +1,7 @@
 package com.fuxuras.memorycards.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,5 +17,8 @@ public class Card {
     private String front;
     private String back;
 
+    @ManyToOne
+    @JsonBackReference
+    private Deck deck;
 
 }
