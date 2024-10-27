@@ -1,1 +1,1 @@
-### Live on [fuxuras.dev/memorycardapp](fuxuras.dev/memorycardapp)
+### Live on [fuxuras.dev/memorycardapp](https://www.fuxuras.dev/memorycardapp)
