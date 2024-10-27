@@ -8,6 +8,7 @@ const backCardElement = document.getElementById('back-card');
 const backCardTextElement = document.getElementById('back-card-text');
 const prevButtonElement = document.getElementById('prev-button');
 const nextButtonElement = document.getElementById('next-button');
+const addCardButtonElement = document.getElementById('addCard')
 let currentDeck;
 let cards;
 
@@ -26,6 +27,7 @@ function initializeDecks() {
         document.getElementById(decks[i].name).addEventListener(
             'click',() => {
                 currentDeck = decks[i];
+                addCardButtonElement.href = window.location.href +"cards?deckId=" + currentDeck.id;
                 cards = currentDeck.cards;
                 initializeCards();
             }
