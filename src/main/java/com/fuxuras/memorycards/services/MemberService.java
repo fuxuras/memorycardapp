@@ -28,4 +28,8 @@ public class MemberService {
         memberRepository.save(member);
         return true;
     }
+
+    public void updateMember(Member member) {
+        memberRepository.save(member);
+    }
 }
