@@ -15,6 +15,9 @@
             <h2 class="text-3xl m-3 text-indigo-800 font-bold mb-6">Decks</h2>
         </div>
 
+        <div id="decks" class="flex">
+
+        </div>
 
         <form class="mt-8 space-y-6" th:action="@{/decks}" method="POST">
             <div class="rounded-lg shadow-lg p-6 bg-indigo-100">
@@ -37,5 +40,35 @@
 
     </div>
 </div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var decks = /*[[${decks}]]*/ 'default';
+    /*]]>*/
+
+    let decksElement = document.getElementById('decks');
+
+    for(let i = 0; i < decks.length; i++){
+        decksElement.innerHTML += '<div class="relative">' +
+            '<button class=" shadow-lg bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 mx-4 px-4 rounded">'+ decks[i].name+' </button> ' +
+            '<button ' + 'id="' + decks[i].name +'" ' + 'class="absolute top-0 right-0 bg-red-600 text-white p-1 font-bold rounded"' +
+            '>X</button>' +
+            '</div>';
+    }
+    for (let i = 0; i < decks.length; i++) {
+        document.getElementById(decks[i].name).addEventListener(
+            'click',() => {
+                deleteDeck(decks[i].id)
+            }
+        )
+    }
+    async function deleteDeck(id){
+        await fetch(window.location.href + "/"+ id, {
+            method: "DELETE"
+        });
+        window.location.reload();
+    }
+</script>
+
 </body>
 </html>

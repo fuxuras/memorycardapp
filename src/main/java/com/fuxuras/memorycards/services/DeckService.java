@@ -33,4 +33,14 @@ public class DeckService {
     public Deck getById(long deckId) {
         return deckRepository.findById(deckId).orElse(null);
     }
+
+    public void deleteDeck(Long deckId, String name) {
+        Member member = memberService.getMemberByUsername(name);
+        Deck deck = deckRepository.findById(deckId).orElse(null);
+        if (deck != null) {
+            if (deck.getOwner().equals(member)) {
+                deckRepository.delete(deck);
+            }
+        }
+    }
 }
