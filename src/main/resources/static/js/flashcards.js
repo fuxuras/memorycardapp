@@ -27,7 +27,6 @@ function initializeDecks() {
         document.getElementById(decks[i].name).addEventListener(
             'click',() => {
                 currentDeck = decks[i];
-                addCardButtonElement.href = window.location.href +"cards?deckId=" + currentDeck.id;
                 cards = currentDeck.cards;
                 initializeCards();
             }

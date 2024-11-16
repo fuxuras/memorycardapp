@@ -7,6 +7,8 @@ import com.fuxuras.memorycards.repositories.CardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CardService {
@@ -17,9 +19,7 @@ public class CardService {
     }
 
 
-    public void deleteCard(Long id) {
-        cardRepository.deleteById(id);
-    }
+
 
     public Card updateCard(Long id, Card card) {
         Card existingCard = cardRepository.findById(id).orElse(null);
@@ -29,6 +29,9 @@ public class CardService {
         existingCard.setFront(card.getFront());
         existingCard.setBack(card.getBack());
         return cardRepository.save(existingCard);
+    }
+    public List<Card> getCardsOfDeck(Long deckId) {
+        return deckService.getById(deckId).getCards();
     }
 
     public void saveCard(String name, long deckId, String front, String back) {
@@ -45,4 +48,15 @@ public class CardService {
     }
 
 
+    public void deleteCard(long deckId, long cardId, String name) {
+        Deck deck = deckService.getById(deckId);
+        if(deck.getOwner().getUsername().equals(name)) {
+            Card card = cardRepository.findById(cardId).orElse(null);
+            if(card != null) {
+                if (card.getDeck().equals(deck)) {
+                    cardRepository.delete(card);
+                }
+            }
+        }
+    }
 }

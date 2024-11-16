@@ -50,13 +50,18 @@
 
     for(let i = 0; i < decks.length; i++){
         decksElement.innerHTML += '<div class="relative">' +
-            '<button class=" shadow-lg bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 mx-4 px-4 rounded">'+ decks[i].name+' </button> ' +
-            '<button ' + 'id="' + decks[i].name +'" ' + 'class="absolute top-0 right-0 bg-red-600 text-white p-1 font-bold rounded"' +
+            '<button id="open' + decks[i].name + '" class="shadow-lg bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 mx-4 px-4 rounded">'+ decks[i].name+' </button> ' +
+            '<button ' + 'id=del"' + decks[i].name +'" ' + 'class="absolute top-0 right-0 bg-red-600 text-white p-1 font-bold rounded"' +
             '>X</button>' +
             '</div>';
     }
     for (let i = 0; i < decks.length; i++) {
-        document.getElementById(decks[i].name).addEventListener(
+        document.getElementById("open"+decks[i].name).addEventListener(
+            "click",() => {
+                window.location.replace(window.location.href + "/" + decks[i].id + "/cards");
+            }
+        )
+        document.getElementById("del"+decks[i].name).addEventListener(
             'click',() => {
                 deleteDeck(decks[i].id)
             }

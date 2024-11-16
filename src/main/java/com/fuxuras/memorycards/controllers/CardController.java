@@ -1,31 +1,36 @@
 package com.fuxuras.memorycards.controllers;
 
+import com.fuxuras.memorycards.models.Card;
 import com.fuxuras.memorycards.services.CardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/cards")
+@RequestMapping("/decks/{deckId}/cards")
 public class CardController {
     private final CardService cardService;
 
     @GetMapping()
-    public String addCard(@RequestParam long deckId, Model model) {
+    public String addCard(@PathVariable long deckId, Model model) {
+        List<Card> cards = cardService.getCardsOfDeck(deckId);
+        model.addAttribute("cards", cards);
         model.addAttribute("deckId", deckId);
         return "cards";
     }
 
     @PostMapping()
-    public String saveCard(@RequestParam long deckId, @RequestParam String front, @RequestParam String back, Principal principal) {
+    public String saveCard(@PathVariable long deckId, @RequestParam String front, @RequestParam String back, Principal principal) {
         cardService.saveCard(principal.getName(),deckId,front,back);
         return "redirect:/";
+    }
+    @DeleteMapping("{cardId}")
+    public void deleteCard(@PathVariable long deckId,@PathVariable long cardId, Principal principal) {
+        cardService.deleteCard(deckId,cardId,principal.getName());
     }
 }

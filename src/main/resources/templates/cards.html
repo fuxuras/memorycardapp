@@ -15,8 +15,12 @@
             <h2 class="text-3xl m-3 text-indigo-800 font-bold mb-6">Cards</h2>
         </div>
 
+        <div id="cards" class="flex">
 
-        <form class="mt-8 space-y-6" th:action="@{/cards}" method="POST">
+        </div>
+
+
+        <form class="mt-8 space-y-6" th:action="@{/decks/{deckId}/cards (deckId=${deckId})}" method="POST">
             <div class="rounded-lg shadow-lg p-6 bg-indigo-100">
 
                 <input type="hidden" name="deckId" th:value="${deckId}">
@@ -47,5 +51,31 @@
 
     </div>
 </div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var cards = /*[[${cards}]]*/ 'default';
+    /*]]>*/
+
+    let cardsElement = document.getElementById('cards');
+    cards.forEach((card) => {
+        cardsElement.innerHTML += '<div class="relative">' +
+            '<button class="shadow-lg bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 mx-4 px-4 rounded">'+ card.front +"<br>" + card.back +' </button> ' +
+            '<button ' + 'id="' + card.id +'" ' + 'class="absolute top-0 right-0 bg-red-600 text-white p-1 font-bold rounded"' +
+            '>X</button>' +
+            '</div>';
+        document.getElementById(card.id).addEventListener('click', () => {
+            deleteCard(card.id);
+        })
+    })
+
+    async function deleteCard(id) {
+        await fetch(window.location.href + "/"+ id, {
+            method: "DELETE"
+        });
+        window.location.reload();
+    }
+
+</script>
 </body>
 </html>
